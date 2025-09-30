@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - Lost Document Verifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        Lost Document Verifier
+    </header>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+        <a href="/history">History</a>
+    </div>
+    <div class="container">
+        <h1>Create an Account</h1>
+        <form method="POST">
+            <label>Name:</label>
+            <input type="text" name="name" required>
+            <label>Email:</label>
+            <input type="email" name="email" required>
+            <label>Password:</label>
+            <input type="password" name="password" required>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="/login">Login here</a></p>
+    </div>
+    <footer>
+        © 2025 Lost Document Verifier. All Rights Reserved.
+    </footer>
+</body>
+</html>

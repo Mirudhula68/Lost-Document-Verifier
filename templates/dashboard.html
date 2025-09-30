@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Student Dashboard</h1>
+    <p>Welcome, {{ session.name }}</p>
+    <a class="btn" href="{{ url_for('request_form') }}">Submit Lost Document Request</a>
+    <a class="btn" href="{{ url_for('verification_result') }}">View Verification Status</a>
+    <a class="btn" href="{{ url_for('logout') }}">Logout</a>
+    <h2>Your Requests</h2>
+    {% if requests %}
+    <table>
+      <tr><th>Document</th><th>Year</th><th>Status</th><th>File</th><th>Action</th></tr>
+      {% for r in requests %}
+      <tr>
+        <td>{{ r.document_type }}</td>
+        <td>{{ r.year_of_issue }}</td>
+        <td>{{ r.status }}</td>
+        <td>
+          {% if r.file_name %}
+            <a href="{{ url_for('uploaded_file', filename=r.file_name) }}" target="_blank">View</a>
+          {% else %}
+            -
+          {% endif %}
+        </td>
+        <td><a href="{{ url_for('download_certificate', req_id=r.id) }}">Download Certificate</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+      <p>No requests yet.</p>
+    {% endif %}
+  </div>
+</body>
+</html>

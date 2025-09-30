@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Submit Lost Document Request</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Lost Document Request</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="messages">
+          {% for cat, msg in messages %}
+            <div class="msg {{cat}}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    <form method="POST" enctype="multipart/form-data">
+      <label>Enrollment Number</label>
+      <input type="text" name="enrollment_no" placeholder="Your enrollment number" required>
+
+      <label>Department</label>
+      <input type="text" name="department" placeholder="Your Department" required>
+
+      <label>Document Type</label>
+      <input type="text" name="document_type" placeholder="e.g., Marksheet, ID Card" required>
+
+      <label>Year of Issue</label>
+      <input type="text" name="year_of_issue" placeholder="e.g., 2022">
+
+      <label>Additional details</label>
+      <textarea name="additional_details" placeholder="Any extra info "></textarea>
+
+      <label>Optional upload (scan)</label>
+      <input type="file" name="file" accept=".pdf,.png,.jpg,.jpeg,.doc,.docx">
+
+      <button type="submit">Submit Request</button>
+    </form>
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+  </div>
+</body>
+</html>
